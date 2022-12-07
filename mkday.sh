@@ -1,8 +1,7 @@
 #!/bin/bash
 
-mkdir -p day$1/src
-cp template.rs "day${1}/src/main.rs"
-cp template.toml "day${1}/Cargo.toml"
+mkdir -p day$1
+cp template.py "day${1}/day${1}.py"
 
 # Download input
 # Put this in .cookie.txt
