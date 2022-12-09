@@ -1,5 +1,3 @@
-from collections import namedtuple
-
 RIGHT = (1, 0)
 LEFT = (-1, 0)
 BOTTOM = (0, 1)
@@ -37,9 +35,9 @@ class Grid:
         return self.data.get(x, y)
 
     def print(self, default="."):
-        for y in range(self.minY, self.maxY+1):
+        for y in range(self.minY, self.maxY + 1):
             r = []
-            for x in range(self.minX, self.maxX+1):
+            for x in range(self.minX, self.maxX + 1):
                 r.append(str(self.data.get((x, y), default)))
             print("".join(r))
         print()
