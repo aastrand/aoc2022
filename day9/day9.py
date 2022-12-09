@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from utils import io
-from utils import grid
+from utils.grid import Grid, TOP, BOTTOM, LEFT, RIGHT
 import os
 import sys
 
@@ -10,10 +10,10 @@ sys.path.append(os.path.dirname(SCRIPT_DIR))
 
 
 MOVES = {
-    'U': grid.TOP,
-    'D': grid.BOTTOM,
-    'L': grid.LEFT,
-    'R': grid.RIGHT,
+    'U': TOP,
+    'D': BOTTOM,
+    'L': LEFT,
+    'R': RIGHT,
 }
 
 
@@ -101,58 +101,27 @@ def part2(filename):
         steps = int(parts[1])
 
         offset = MOVES[dir]
-        maxX = knots[0][0] + 5
-        minX = knots[0][0] - 5
-        maxY = knots[0][1] + 5
-        minY = knots[0][1] - 5
         for s in range(0, steps):
             knots[0][0] += offset[0]
             knots[0][1] += offset[1]
 
-            grid = {}
-            grid[tuple(knots[0])] = 'H'
-            maxX = max(maxX, knots[0][0])
-            minX = min(minX, knots[0][0])
-            maxY = max(maxY, knots[0][1])
-            minY = min(minY, knots[0][1])
+            grid = Grid()
+            grid.set(tuple(knots[0]), 'H')
 
             for k in range(1, len(knots)):
                 knots[k] = move_tail(knots[k], knots[k-1], offset, True)
-                if tuple(knots[k]) not in grid:
-                    grid[tuple(knots[k])] = k
-                maxX = max(maxX, knots[k][0])
-                minX = min(minX, knots[k][0])
-                maxY = max(maxY, knots[k][1])
-                minY = min(minY, knots[k][1])
-            # print("move", dir, steps)
-            # for y in range(minY, maxY+1):
-            #     r = []
-            #     for x in range(minX, maxX+1):
-            #         r.append(str(grid.get((x, y), '.')))
-            #     print("".join(r))
-            # print()
+                if tuple(knots[k]) not in grid.data:
+                    grid.set(tuple(knots[k]), k)
 
+            #grid.print()
 
             visited.add(tuple(knots[9]))
 
-    # grid = {}
-    # maxX = 0
-    # minX = 0
-    # maxY = 0
-    # minY = 0
-    # for v in visited:
-    #     maxX = max(maxX, v[0])
-    #     minX = min(minX, v[0])
-    #     maxY = max(maxY, v[1])
-    #     minY = min(minY, v[1])
-    #     grid[v] = '#'
-    # print()
-    # for y in range(minY, maxY+1):
-    #     r = []
-    #     for x in range(minX, maxX+1):
-    #         r.append(str(grid.get((x, y), '.')))
-    #     print("".join(r))
-    # print()
+    grid = Grid()
+    for v in visited:
+        grid.set(v, '#')
+    grid.print()
+
 
     return len(visited)
 
