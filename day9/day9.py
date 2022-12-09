@@ -2,6 +2,7 @@
 
 from utils import io
 from utils.grid import Grid, TOP, BOTTOM, LEFT, RIGHT
+from utils.math import sign
 import os
 import sys
 
@@ -15,9 +16,6 @@ MOVES = {
     'L': LEFT,
     'R': RIGHT,
 }
-
-
-def sign(a): return (a > 0) - (a < 0)
 
 
 def move_tail(t, h, offset, part2=False):
