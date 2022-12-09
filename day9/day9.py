@@ -18,23 +18,20 @@ def move_tail(t, h, offset):
     diff = [abs(t[0] - h[0]), abs(t[1] - h[1])]
 
     # if touches, do nothing
-    if abs(h[0] - t[0]) <= 1 and abs(h[1] - t[1]) <= 1:
+    if diff[0] <= 1 and diff[1] <= 1:
         return t
 
-    if diff[0] > 1 or diff[1] > 1:
-        if diff[0] == 1:
-            t[0] = h[0]
-            t[1] = h[1] - sign(h[1] - t[1])
-        elif diff[1] == 1:
-            t[0] = h[0] - sign(h[0] - t[0])
-            t[1] = h[1]
-        else:
-            t[0] = h[0] - sign(h[0] - t[0])
-            t[1] = h[1] - sign(h[1] - t[1])
-        return t
+    if diff[0] == 1:
+        t[0] = h[0]
+        t[1] = h[1] - sign(h[1] - t[1])
+    elif diff[1] == 1:
+        t[0] = h[0] - sign(h[0] - t[0])
+        t[1] = h[1]
+    else:
+        t[0] = h[0] - sign(h[0] - t[0])
+        t[1] = h[1] - sign(h[1] - t[1])
 
-    print("shold not end up here", h, t, offset)
-    quit()
+    return t
 
 
 def part1(filename):
