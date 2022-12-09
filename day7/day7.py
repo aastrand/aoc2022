@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
 
-from utils import io
-import os
 import sys
 
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.dirname(SCRIPT_DIR))
+from utils import io
 
 
 def find_sizes(tree, cur):
@@ -40,8 +37,12 @@ def parse(lines):
                     path_name = "/".join(path)
 
                     if path_name not in tree:
-                        cur = {"name": path_name, "children": [],
-                               "parent": cur, "files": []}
+                        cur = {
+                            "name": path_name,
+                            "children": [],
+                            "parent": cur,
+                            "files": [],
+                        }
                         tree[path_name] = cur
                     else:
                         cur = tree[path_name]
@@ -75,7 +76,7 @@ def part2(filename):
 
     min = total
     for name, dir in tree.items():
-        if (total-used) + dir["size"] > needed and min > dir["size"]:
+        if (total - used) + dir["size"] > needed and min > dir["size"]:
             min = dir["size"]
 
     return min

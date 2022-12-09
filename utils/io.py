@@ -1,5 +1,5 @@
 def get_lines(filename):
-    return [l.strip() for l in open(filename, "r")]
+    return [line.strip() for line in open(filename, "r")]
 
 
 def get_input(filename):
