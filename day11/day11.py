@@ -2,6 +2,7 @@
 
 import sys
 from collections import deque
+from dataclasses import dataclass
 from functools import reduce
 
 from utils import io
@@ -13,14 +14,14 @@ def debug(s):
     # print(s)
 
 
+@dataclass
 class Monkey:
-    def __init__(self, id, items, op, divisor, to):
-        self.id = id
-        self.items = items
-        self.op = op
-        self.divisor = divisor
-        self.to = to
-        self.count = 0
+    id: int
+    items: list
+    op: str
+    divisor: int
+    to: dict
+    count: int = 0
 
     def operation(self, x):
         if "old * old" in self.op:
@@ -65,10 +66,10 @@ def round(monkeys, total=0):
                 "    Monkey gets bored with item. Worry level is divided by 3 to %d." % item)
             outcome = m.test(item)
             if outcome:
-                debug("    Current worry level is not divisible by %d." %
+                debug("    Current worry level is divisible by %d." %
                       m.divisor)
             else:
-                debug("    Current worry level is divisible by %d." %
+                debug("    Current worry level is not divisible by %d." %
                       m.divisor)
 
             to = m.to[outcome]
