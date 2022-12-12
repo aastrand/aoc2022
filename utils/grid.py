@@ -31,8 +31,11 @@ class Grid:
         self.maxY = max(self.maxY, y)
         self.data[(x, y)] = val
 
-    def get(self, x, y):
-        return self.data.get(x, y)
+    def get(self, coords):
+        return self.get_at(coords[0], coords[1])
+
+    def get_at(self, x, y):
+        return self.data.get((x, y))
 
     def print(self, default="."):
         for y in range(self.minY, self.maxY + 1):
@@ -41,6 +44,18 @@ class Grid:
                 r.append(str(self.data.get((x, y), default)))
             print("".join(r))
         print()
+
+    def from_lines(lines, visitor=lambda *a, **kw: 0):
+        grid = Grid()
+        for y in range(0, len(lines)):
+            for x in range(0, len(lines[0])):
+                pos = (x, y)
+                val = lines[y][x]
+                grid.set(pos, val)
+
+                visitor(grid, pos, val)
+
+        return grid
 
 
 def flood_fill(grid, pos, visitor):
