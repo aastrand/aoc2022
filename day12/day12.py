@@ -2,11 +2,9 @@
 
 import sys
 
-from collections import defaultdict
-
 from utils import io
 from utils.graph import dijkstra, from_grid, get_path
-from utils.grid import Grid, OFFSETS_STRAIGHT
+from utils.grid import Grid
 
 
 def elevation(a, b):
@@ -39,10 +37,8 @@ def parse(lines):
 
 def part1(filename):
     s, e, grid = parse(io.get_lines(filename))
-
-    def condition(_pos, _neighbour, val, other):
-        return elevation(val, other) <= 1
-    graph = from_grid(grid, condition)
+    graph = from_grid(grid, lambda _p, _n, val,
+                      other: elevation(val, other) <= 1)
 
     path, _, _ = dijkstra(graph, s, e)
 
@@ -51,10 +47,8 @@ def part1(filename):
 
 def part2(filename):
     s, e, grid = parse(io.get_lines(filename))
-
-    def condition(_pos, _neighbour, val, other):
-        return elevation(val, other) >= -1
-    graph = from_grid(grid, condition)
+    graph = from_grid(grid, lambda _p, _n, val,
+                      other: elevation(val, other) >= -1)
 
     path, _, prev = dijkstra(graph, e, s)
 
