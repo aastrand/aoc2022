@@ -29,3 +29,6 @@ jobs:
       - name: Test with pytest
         run: |
           PYTHONPATH=. pytest test/*.py
+      - name: Run all puzzles, check for exit codes
+        run: |
+          ./run.sh
