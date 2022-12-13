@@ -20,7 +20,7 @@ def part2(filename):
 
 
 def main():
-    assert part1("example.txt") == 240
+    assert part1("example.txt") == 24000
     print(part1("input.txt"))
 
     assert part2("example.txt") == 45000
