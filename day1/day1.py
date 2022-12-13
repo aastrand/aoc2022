@@ -6,14 +6,14 @@ from utils import io
 
 
 def part1(filename):
-    lines = io.get_input(filename).split("\n\n")
+    lines = io.get_input(filename).strip().split("\n\n")
 
-    return max([sum([int(l) for l in line.split("\n")]) for line in lines])
+    return max([sum([int(ln) for ln in line.split("\n")]) for line in lines])
 
 
 def part2(filename):
-    lines = io.get_input(filename).split("\n\n")
-    elves = [sum([int(l) for l in line.split("\n")]) for line in lines]
+    lines = io.get_input(filename).strip().split("\n\n")
+    elves = [sum([int(ln) for ln in line.split("\n")]) for line in lines]
     elves.sort()
 
     return sum(elves[-3:])
