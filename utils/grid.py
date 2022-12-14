@@ -38,9 +38,12 @@ class Grid:
         return self.data.get((x, y))
 
     def print(self, default="."):
-        for y in range(self.minY, self.maxY + 1):
+        self.print_from(self.minX, self.maxX, self.minY, self.maxY, default)
+
+    def print_from(self, minX, maxX, minY, maxY, default="."):
+        for y in range(minY, maxY + 1):
             r = []
-            for x in range(self.minX, self.maxX + 1):
+            for x in range(minX, maxX + 1):
                 r.append(str(self.data.get((x, y), default)))
             print("".join(r))
         print()
