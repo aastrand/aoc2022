@@ -1,4 +1,5 @@
 from collections import defaultdict
+
 from .grid import OFFSETS_STRAIGHT
 
 
@@ -78,3 +79,20 @@ def from_grid(grid, condition):
                     graph[pos].add(neighbour)
 
     return graph
+
+
+def floyd_warshall(graph):
+    distance = defaultdict(int)
+    for n, neighbours in graph.items():
+        for other, _ in graph.items():
+            if n != other:
+                distance[(n, other)] = 1 if other in neighbours else float('inf')
+
+    for k in graph.keys():
+        for i in graph.keys():
+            for j in graph.keys():
+                if i != j and j != k:
+                    distance[(i, j)] = min(
+                        distance[(i, j)], distance[(i, k)] + distance[(k, j)])
+
+    return distance
