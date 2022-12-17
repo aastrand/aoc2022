@@ -37,15 +37,25 @@ class Grid:
     def get_at(self, x, y):
         return self.data.get((x, y))
 
-    def print(self, default="."):
-        self.print_from(self.minX, self.maxX, self.minY, self.maxY, default)
+    def print_output(self, default="."):
+        return self.print_output_from(self.minX, self.maxX, self.minY, self.maxY, default)
 
-    def print_from(self, minX, maxX, minY, maxY, default="."):
+    def print_output_from(self, minX, maxX, minY, maxY, default="."):
+        rows = []
         for y in range(minY, maxY + 1):
             r = []
             for x in range(minX, maxX + 1):
                 r.append(str(self.data.get((x, y), default)))
-            print("".join(r))
+            rows.append("".join(r))
+
+        return rows
+
+    def print(self, default="."):
+        self.print_from(self.minX, self.maxX, self.minY, self.maxY, default)
+
+    def print_from(self, minX, maxX, minY, maxY, default="."):
+        for row in self.print_output_from(minX, maxX, minY, maxY, default):
+            print(row)
         print()
 
     def from_lines(lines, visitor=lambda *a, **kw: 0):
