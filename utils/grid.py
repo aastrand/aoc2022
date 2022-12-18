@@ -79,21 +79,22 @@ class Grid:
 
         return grid
 
+    def flood_fill(self, pos, visitor=lambda _: ()):
+        q = [pos]
+        visited = set()
+        visited.add(pos)
 
-def flood_fill(grid, pos, visitor):
-    q = [pos]
-    visited = set()
-    visited.add(pos)
+        while len(q) > 0:
+            pos = q.pop(0)
+            visitor(self, pos)
 
-    while len(q) > 0:
-        pos = q.pop(0)
-        visitor(grid, pos)
+            for o in OFFSETS_STRAIGHT:
+                neighbour = (pos[0] + o[0], pos[1] + o[1])
+                if self.get(neighbour) == "." and neighbour not in visited:
+                    q.append(neighbour)
+                    visited.add(neighbour)
 
-        for o in OFFSETS_STRAIGHT:
-            neighbour = (pos[0] + o[0], pos[1] + o[1])
-            if grid.get(neighbour) == "#" and neighbour not in visited:
-                q.append(neighbour)
-                visited.add(neighbour)
+        return visited
 
 
 def adjecent_3d(c1, c2):
@@ -113,18 +114,20 @@ def adjecent_3d(c1, c2):
 def inside_3d(point, bounds):
     inside = True
     for i in range(0, 3):
-        inside &= (point[i] < bounds[0][i] + 1
-                   and point[i] >= bounds[1][i] - 1)
+        inside &= (point[i] >= bounds[0][i] and
+                   point[i] < bounds[1][i] + 1)
 
     return inside
 
 
-def neighbours_3d(cube):
+def neighbours_3d(point):
     for o in OFFSETS_STRAIGHT_3D:
-        yield (cube[0] + o[0], cube[1] + o[1], cube[2] + o[2])
+        yield (point[0] + o[0], point[1] + o[1], point[2] + o[2])
 
 
 def flood_fill_3d(start, blocked, bounds):
+    assert start not in blocked
+
     visited = set()
     q = [start]
 
@@ -137,9 +140,3 @@ def flood_fill_3d(start, blocked, bounds):
                 q.append(n)
 
     return visited
-
-
-assert adjecent_3d((1, 2, 3), (6, 7, 8)) is False
-assert adjecent_3d((1, 1, 1), (2, 1, 1)) is True
-assert adjecent_3d((2, 1, 2), (2, 3, 2)) is False
-assert adjecent_3d((1, 2, 5), (2, 2, 6)) is False
