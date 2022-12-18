@@ -3,7 +3,7 @@ from collections import defaultdict
 from .grid import OFFSETS_STRAIGHT
 
 
-def bfs(start, graph):
+def bfs(start, graph, visitor=lambda n: ()):
     visited = set()
     q = []
 
@@ -12,10 +12,30 @@ def bfs(start, graph):
 
     while len(q) > 0:
         cur = q.pop(0)
+        visitor(cur)
         for n in graph.get(cur, []):
             if not n in visited:
                 q.append(n)
                 visited.add(n)
+
+    return visited
+
+
+def dfs(start, graph, visitor=lambda n: ()):
+    visited = set()
+    q = []
+
+    q.append(start)
+
+    while len(q) > 0:
+        cur = q.pop()
+        if cur not in visited:
+            visited.add(cur)
+            visitor(cur)
+
+        for n in graph.get(cur, []):
+            if not n in visited:
+                q.append(n)
 
     return visited
 
