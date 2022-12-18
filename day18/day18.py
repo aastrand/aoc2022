@@ -39,16 +39,16 @@ def part2(filename):
 
     # make inverse set
     inverse = set()
-    for x in range(mins[0]-1, maxes[0] + 1):
-        for y in range(mins[1]-1, maxes[1] + 1):
-            for z in range(mins[2]-1, maxes[2] + 1):
+    for x in range(mins[0], maxes[0] + 1):
+        for y in range(mins[1], maxes[1] + 1):
+            for z in range(mins[2], maxes[2] + 1):
                 cube = (x, y, z)
                 if cube not in cubes:
                     inverse.add(cube)
 
     # out of inverse, which cubes are not connected with outmost corner position
     start = (maxes[0], maxes[1], maxes[1])
-    visited = flood_fill_3d(start, cubes, (maxes, mins))
+    visited = flood_fill_3d(start, cubes, (mins, maxes))
     for i in inverse:
         if i not in visited:
             cubes.add(i)
