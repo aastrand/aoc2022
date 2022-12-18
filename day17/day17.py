@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import copy
 import sys
 from dataclasses import dataclass
 
@@ -153,8 +152,6 @@ def run_rocks(wind, rocks):
             skip = (rocks - i - 1) // cycle_length
             skipped = (skip * cycle_height)
 
-            # print('cycle detected at', i, ', cycle length:',
-            #      cycle_length, ', cycle height', cycle_height, ', skipping', skip * cycle_length, 'iterations for', skipped, 'extra height')
             i += (skip * cycle_length)
 
         i += 1
@@ -173,65 +170,65 @@ def main():
     grid.set((0, 0), '+')
 
     # +###
-    assert SHAPES[0].intersects(grid, (0, 0)) == True
+    assert SHAPES[0].intersects(grid, (0, 0)) is True
     # +####
-    assert SHAPES[0].intersects(grid, (1, 0)) == False
+    assert SHAPES[0].intersects(grid, (1, 0)) is False
     # ###+
-    assert SHAPES[0].intersects(grid, (-3, 0)) == True
+    assert SHAPES[0].intersects(grid, (-3, 0)) is True
     # ####+
-    assert SHAPES[0].intersects(grid, (-4, 0)) == False
+    assert SHAPES[0].intersects(grid, (-4, 0)) is False
     # ####
     # +
-    assert SHAPES[0].intersects(grid, (0, -1)) == False
+    assert SHAPES[0].intersects(grid, (0, -1)) is False
     # +
     # ####
-    assert SHAPES[0].intersects(grid, (0, 1)) == False
+    assert SHAPES[0].intersects(grid, (0, 1)) is False
     # ####
     #    +
-    assert SHAPES[0].intersects(grid, (-3, -1)) == False
+    assert SHAPES[0].intersects(grid, (-3, -1)) is False
     #    +
     # ####
-    assert SHAPES[0].intersects(grid, (-3, 1)) == False
+    assert SHAPES[0].intersects(grid, (-3, 1)) is False
 
     #  +
     # ###
     #  #
-    assert SHAPES[1].intersects(grid, (-1, 2)) == True
+    assert SHAPES[1].intersects(grid, (-1, 2)) is True
 
     #  #
     # ###
     #  +
-    assert SHAPES[1].intersects(grid, (-1, 0)) == True
+    assert SHAPES[1].intersects(grid, (-1, 0)) is True
 
     #  #
     # +##
     #  #
-    assert SHAPES[1].intersects(grid, (0, 1)) == True
+    assert SHAPES[1].intersects(grid, (0, 1)) is True
 
     #  #
     # ##+
     #  #
-    assert SHAPES[1].intersects(grid, (-2, 1)) == True
+    assert SHAPES[1].intersects(grid, (-2, 1)) is True
 
     #  #
     # ###
     # +#
-    assert SHAPES[1].intersects(grid, (0, 0)) == False
+    assert SHAPES[1].intersects(grid, (0, 0)) is False
 
     #  #+
     # ###
     #  #
-    assert SHAPES[1].intersects(grid, (-2, 2)) == False
+    assert SHAPES[1].intersects(grid, (-2, 2)) is False
 
     # +#
     # ###
     #  #
-    assert SHAPES[1].intersects(grid, (0, -2)) == False
+    assert SHAPES[1].intersects(grid, (0, -2)) is False
 
     #  #
     # ###
     #  #+
-    assert SHAPES[1].intersects(grid, (-2, 0)) == False
+    assert SHAPES[1].intersects(grid, (-2, 0)) is False
 
     expected = ['...####..',
                 '+-------+']
