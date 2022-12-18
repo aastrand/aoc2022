@@ -5,7 +5,7 @@ for d in {1..25}; do
     cd day$d;
     echo "Running day${d}"
 
-    PYTHONPATH=..:. ./day$d.py;
+    time PYTHONPATH=..:. ./day$d.py;
     r=$?
     if [ $r -ne 0 ]; then
       echo "Error running ${d}"
