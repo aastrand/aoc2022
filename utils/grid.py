@@ -7,10 +7,19 @@ BOTTOM_RIGHT = (1, 1)
 TOP_RIGHT = (1, -1)
 BOTTOM_LEFT = (-1, 1)
 
-
 OFFSETS = (RIGHT, LEFT, BOTTOM, TOP, TOP_LEFT,
            BOTTOM_RIGHT, TOP_RIGHT, BOTTOM_LEFT)
 OFFSETS_STRAIGHT = (RIGHT, LEFT, TOP, BOTTOM)
+
+RIGHT_3D = (1, 0, 0)
+LEFT_3D = (-1, 0, 0)
+BOTTOM_3D = (0, 1, 0)
+TOP_3D = (0, -1, 0)
+FRONT_3D = (0, 0, 1)
+BEHIND_3D = (0, 0, -1)
+
+OFFSETS_STRAIGHT_3D = (RIGHT_3D, LEFT_3D, TOP_3D,
+                       BOTTOM_3D, FRONT_3D, BEHIND_3D)
 
 
 class Grid:
@@ -85,3 +94,52 @@ def flood_fill(grid, pos, visitor):
             if grid.get(neighbour) == "#" and neighbour not in visited:
                 q.append(neighbour)
                 visited.add(neighbour)
+
+
+def adjecent_3d(c1, c2):
+    if c1 == c2:
+        return False
+
+    diffs = []
+    same = 0
+    for i in range(0, 3):
+        diffs.append(abs(c1[i] - c2[i]))
+        if diffs[i] == 0:
+            same += 1
+
+    return same == 2 and (diffs[0] <= 1 and diffs[1] <= 1 and diffs[2] <= 1)
+
+
+def inside_3d(point, bounds):
+    inside = True
+    for i in range(0, 3):
+        inside &= (point[i] < bounds[0][i] + 1
+                   and point[i] >= bounds[1][i] - 1)
+
+    return inside
+
+
+def neighbours_3d(cube):
+    for o in OFFSETS_STRAIGHT_3D:
+        yield (cube[0] + o[0], cube[1] + o[1], cube[2] + o[2])
+
+
+def flood_fill_3d(start, blocked, bounds):
+    visited = set()
+    q = [start]
+
+    while len(q) > 0:
+        cur = q.pop()
+        visited.add(cur)
+
+        for n in neighbours_3d(cur):
+            if n not in visited and inside_3d(n, bounds) and n not in blocked:
+                q.append(n)
+
+    return visited
+
+
+assert adjecent_3d((1, 2, 3), (6, 7, 8)) is False
+assert adjecent_3d((1, 1, 1), (2, 1, 1)) is True
+assert adjecent_3d((2, 1, 2), (2, 3, 2)) is False
+assert adjecent_3d((1, 2, 5), (2, 2, 6)) is False
