@@ -70,7 +70,7 @@ class Grid:
     def from_lines(lines, visitor=lambda *a, **kw: 0):
         grid = Grid()
         for y in range(0, len(lines)):
-            for x in range(0, len(lines[0])):
+            for x in range(0, len(lines[y])):
                 pos = (x, y)
                 val = lines[y][x]
                 grid.set(pos, val)
