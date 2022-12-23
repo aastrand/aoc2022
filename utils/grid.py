@@ -25,19 +25,21 @@ OFFSETS_STRAIGHT_3D = (RIGHT_3D, LEFT_3D, TOP_3D,
 class Grid:
     def __init__(self):
         self.data = {}
-        self.minX = 0
-        self.maxX = 0
-        self.minY = 0
-        self.maxY = 0
+        self.minX = None
+        self.maxX = None
+        self.minY = None
+        self.maxY = None
 
     def set(self, coords, val):
         self.set_at(coords[0], coords[1], val)
 
     def set_at(self, x, y, val):
-        self.minX = min(self.minX, x)
-        self.maxX = max(self.maxX, x)
-        self.minY = min(self.minY, y)
-        self.maxY = max(self.maxY, y)
+        self.minX = min(
+            self.minX if self.minX is not None else float('inf'), x)
+        self.maxX = max(self.maxX if self.maxX is not None else 0, x)
+        self.minY = min(
+            self.minY if self.minY is not None else float('inf'), y)
+        self.maxY = max(self.maxY if self.maxY is not None else 0, y)
         self.data[(x, y)] = val
 
     def get(self, coords):
