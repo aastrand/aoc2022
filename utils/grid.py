@@ -46,6 +46,9 @@ class Grid:
     def get_at(self, x, y):
         return self.data.get((x, y))
 
+    def items(self):
+        return self.data.items()
+
     def print_output(self, default="."):
         return self.print_output_from(self.minX, self.maxX, self.minY, self.maxY, default)
 
