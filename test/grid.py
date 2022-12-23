@@ -18,10 +18,16 @@ class TestGrid(unittest.TestCase):
 
     def test_grid_empty(self):
         grid = Grid()
-        self.assertEqual(0, grid.minX)
-        self.assertEqual(0, grid.maxX)
-        self.assertEqual(0, grid.minY)
-        self.assertEqual(0, grid.maxY)
+        self.assertEqual(None, grid.minX)
+        self.assertEqual(None, grid.maxX)
+        self.assertEqual(None, grid.minY)
+        self.assertEqual(None, grid.maxY)
+
+        grid.set((10, 10), "#")
+        self.assertEqual(10, grid.minX)
+        self.assertEqual(10, grid.maxX)
+        self.assertEqual(10, grid.minY)
+        self.assertEqual(10, grid.maxY)
 
     def test_grid_from_lines(self):
         grid = Grid.from_lines(self.LINES)

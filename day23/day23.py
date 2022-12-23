@@ -86,12 +86,9 @@ def part1(filename, rounds=10):
         # print("== End of Round", r, "==")
         # grid.print()
 
-    minX = min(pos[0] for pos in grid.data.keys())
-    minY = min(pos[1] for pos in grid.data.keys())
-
     sum = 0
-    for y in range(minY, grid.maxY+1):
-        for x in range(minX, grid.maxX+1):
+    for y in range(grid.minY, grid.maxY+1):
+        for x in range(grid.minX, grid.maxX+1):
             if grid.data.get((x, y)) != "#":
                 sum += 1
 
