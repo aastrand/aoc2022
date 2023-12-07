@@ -120,13 +120,13 @@ def main():
     assert is_visible(3, 3, rows, cols) is False
 
     assert part1("example.txt") == 21
-    print(part1("input.txt"))
+    print(part1("../input/2022/day8.txt"))
 
     assert scenic_score(2, 1, rows, cols) == 4
     assert scenic_score(2, 3, rows, cols) == 8
 
     assert part2("example.txt") == 8
-    print(part2("input.txt"))
+    print(part2("../input/2022/day8.txt"))
 
 
 if __name__ == "__main__":

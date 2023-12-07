@@ -378,10 +378,10 @@ def main():
     assert grid.print_output() == expected
 
     assert solve("example.txt", 2022) == 3068
-    print(solve("input.txt", 2022))
+    print(solve("../input/2022/day17.txt", 2022))
 
     assert solve("example.txt", 1000000000000) == 1514285714288
-    print(solve("input.txt", 1000000000000))
+    print(solve("../input/2022/day17.txt", 1000000000000))
 
 
 if __name__ == "__main__":

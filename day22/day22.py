@@ -310,12 +310,12 @@ def part2(filename, cube, bounds):
 
 def main():
     assert part1("example.txt") == 6032
-    print(part1("input.txt"))
+    print(part1("../input/2022/day22.txt"))
 
     assert in_quadrant((8, 0), EXAMPLE_BOUNDS) == 1
 
     assert part2("example.txt", EXAMPLE_CUBE, EXAMPLE_BOUNDS) == 5031
-    print(part2("input.txt", CUBE, BOUNDS))
+    print(part2("../input/2022/day22.txt", CUBE, BOUNDS))
 
 
 if __name__ == "__main__":

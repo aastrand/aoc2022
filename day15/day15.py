@@ -92,10 +92,10 @@ def part2(filename, max=20):
 
 def main():
     assert part1("example.txt") == 26
-    print(part1("input.txt", 2000000))
+    print(part1("../input/2022/day15.txt", 2000000))
 
     assert part2("example.txt") == 56000011
-    print(part2("input.txt", 4000000))
+    print(part2("../input/2022/day15.txt", 4000000))
 
 
 if __name__ == "__main__":

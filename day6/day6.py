@@ -28,7 +28,7 @@ def main():
     assert find_seq_index("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg", 4) == 10
     assert find_seq_index("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw", 4) == 11
 
-    print(part1("input.txt"))
+    print(part1("../input/2022/day6.txt"))
 
     assert find_seq_index("mjqjpqmgbljsphdztnvjfqwrcgsmlb", 14) == 19
     assert find_seq_index("bvwbjplbgvbhsrlpgdmjqwftvncz", 14) == 23
@@ -36,7 +36,7 @@ def main():
     assert find_seq_index("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg", 14) == 29
     assert find_seq_index("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw", 14) == 26
 
-    print(part2("input.txt"))
+    print(part2("../input/2022/day6.txt"))
 
 
 if __name__ == "__main__":

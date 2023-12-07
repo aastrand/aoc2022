@@ -137,7 +137,7 @@ def main():
     assert to_snafu(4890) == "2=-1=0"
 
     assert part1("example.txt") == "2=-1=0"
-    print(part1("input.txt"))
+    print(part1("../input/2022/day25.txt"))
 
 
 if __name__ == "__main__":

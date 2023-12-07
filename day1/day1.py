@@ -21,10 +21,10 @@ def part2(filename):
 
 def main():
     assert part1("example.txt") == 24000
-    print(part1("input.txt"))
+    print(part1("../input/2022/day1.txt"))
 
     assert part2("example.txt") == 45000
-    print(part2("input.txt"))
+    print(part2("../input/2022/day1.txt"))
 
 
 if __name__ == "__main__":

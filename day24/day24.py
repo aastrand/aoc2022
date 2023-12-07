@@ -179,10 +179,10 @@ def main():
     assert collision(obstacles, bounds, (5, 0), 12)
 
     assert part1("example.txt") == 18
-    print(part1("input.txt"))
+    print(part1("../input/2022/day24.txt"))
 
     assert part2("example.txt") == 54
-    print(part2("input.txt"))
+    print(part2("../input/2022/day24.txt"))
 
 
 if __name__ == "__main__":

@@ -94,11 +94,11 @@ def part2(filename):
 
 def main():
     assert part1("example.txt") == 152
-    print(part1("input.txt"))
+    print(part1("../input/2022/day21.txt"))
 
     # somehow example and input have different search directions
     # assert part2("example.txt") == 301
-    print(part2("input.txt"))
+    print(part2("../input/2022/day21.txt"))
 
 
 if __name__ == "__main__":

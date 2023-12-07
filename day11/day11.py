@@ -133,10 +133,10 @@ def part2(filename):
 
 def main():
     assert part1("example.txt") == 10605
-    print(part1("input.txt"))
+    print(part1("../input/2022/day11.txt"))
 
     assert part2("example.txt") == 2713310158
-    print(part2("input.txt"))
+    print(part2("../input/2022/day11.txt"))
 
 
 if __name__ == "__main__":

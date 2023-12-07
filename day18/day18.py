@@ -59,10 +59,10 @@ def part2(filename):
 
 def main():
     assert part1("example.txt") == 64
-    print(part1("input.txt"))
+    print(part1("../input/2022/day18.txt"))
 
     assert part2("example.txt") == 58
-    print(part2("input.txt"))
+    print(part2("../input/2022/day18.txt"))
 
 
 if __name__ == "__main__":

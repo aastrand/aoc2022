@@ -101,10 +101,10 @@ def main():
     assert compare([0, 0, 0], 2) == -1
 
     assert part1("example.txt") == 13
-    print(part1("input.txt"))
+    print(part1("../input/2022/day13.txt"))
 
     assert part2("example.txt") == 140
-    print(part2("input.txt"))
+    print(part2("../input/2022/day13.txt"))
 
 
 if __name__ == "__main__":
